@@ -13,6 +13,8 @@ FLAGS       equ  MODULEALIGN | MEMINFO  ; this is the Multiboot 'flag' field
 MAGIC       equ    0xe8520d6            ; 'magic number' lets bootloader find the header
 CHECKSUM    equ -(MAGIC + FLAGS)        ; checksum required
 
+section .text
+ALIGN 4
 MultiBootHeader:
    dd MAGIC
    dd FLAGS
@@ -20,5 +22,5 @@ MultiBootHeader:
 
 ;you can modify these
 start:
-push ebx ;this is optional and load's the grub structure
-call _kernel_main
+   push ebx ;this is optional and load's the grub structure
+   call _kernel_main
